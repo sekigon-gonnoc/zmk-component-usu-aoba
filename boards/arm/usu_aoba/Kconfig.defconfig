@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: MIT
+
+if BOARD_USU_AOBA
+
+if USB_DEVICE_STACK
+
+config USB_NRFX
+    default y
+
+endif # USB_DEVICE_STACK
+
+config BT_CTLR
+    default BT
+
+choice ZMK_BOOTMODE_MAGIC_VALUE_BOOTLOADER_TYPE
+    default ZMK_BOOTMODE_MAGIC_VALUE_BOOTLOADER_TYPE_ADAFRUIT_NRF52
+endchoice
+
+endif
