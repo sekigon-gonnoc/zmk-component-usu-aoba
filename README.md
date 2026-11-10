@@ -21,7 +21,7 @@ Please adjust the shield name to match your own keyboard.
 
 ```yaml
 include:
-  - board: usu_aoba
+  - board: usu_aoba@1.0.0 # for rev.1 boards
     shield: <your-shield>
 ```
 

@@ -19,11 +19,6 @@
         zmk,battery = &vbatt;
     };
 
-    vbatt: vbatt {
-        compatible = "zmk,non-lipo-battery";
-        io-channels = <&adc 2>;
-    };
-
 	akdk_d: connector {
 		#gpio-cells = <2>;
 		gpio-map-mask = <0xffffffff 0xffffffc0>;
