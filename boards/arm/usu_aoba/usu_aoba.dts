@@ -9,6 +9,35 @@
 #include <nordic/nrf52840_qiaa.dtsi>
 #include <common/nordic/nrf52840_uf2_boot_mode.dtsi>
 
+#define USU_AOBA_EXTENSION_1 &usu_aoba_ext1
+#define USU_AOBA_EXTENSION_2 &usu_aoba_ext2
+#define USU_AOBA_EXTENSION_3 &usu_aoba_ext3
+
+#define USU_AOBA_EXTENSION_1_GPIO(pin, flags) <USU_AOBA_EXTENSION_1 pin flags>
+#define USU_AOBA_EXTENSION_2_GPIO(pin, flags) <USU_AOBA_EXTENSION_2 pin flags>
+#define USU_AOBA_EXTENSION_3_GPIO(pin, flags) <USU_AOBA_EXTENSION_3 pin flags>
+
+#define _USU_AOBA_EXTENSION_PSEL(port, pin, peripheral) \
+	NRF_PSEL(peripheral, USU_AOBA_EXT##port##_PIN##pin##_PORT, \
+		USU_AOBA_EXT##port##_PIN##pin##_NUMBER)
+#define USU_AOBA_EXTENSION_PSEL(port, pin, peripheral) \
+	_USU_AOBA_EXTENSION_PSEL(port, pin, peripheral)
+
+#define USU_AOBA_EXTENSION_1_PSEL_PIN1(peripheral) USU_AOBA_EXTENSION_PSEL(1, 1, peripheral)
+#define USU_AOBA_EXTENSION_1_PSEL_PIN2(peripheral) USU_AOBA_EXTENSION_PSEL(1, 2, peripheral)
+#define USU_AOBA_EXTENSION_1_PSEL_PIN3(peripheral) USU_AOBA_EXTENSION_PSEL(1, 3, peripheral)
+#define USU_AOBA_EXTENSION_1_PSEL_PIN4(peripheral) USU_AOBA_EXTENSION_PSEL(1, 4, peripheral)
+
+#define USU_AOBA_EXTENSION_2_PSEL_PIN1(peripheral) USU_AOBA_EXTENSION_PSEL(2, 1, peripheral)
+#define USU_AOBA_EXTENSION_2_PSEL_PIN2(peripheral) USU_AOBA_EXTENSION_PSEL(2, 2, peripheral)
+#define USU_AOBA_EXTENSION_2_PSEL_PIN3(peripheral) USU_AOBA_EXTENSION_PSEL(2, 3, peripheral)
+#define USU_AOBA_EXTENSION_2_PSEL_PIN4(peripheral) USU_AOBA_EXTENSION_PSEL(2, 4, peripheral)
+
+#define USU_AOBA_EXTENSION_3_PSEL_PIN1(peripheral) USU_AOBA_EXTENSION_PSEL(3, 1, peripheral)
+#define USU_AOBA_EXTENSION_3_PSEL_PIN2(peripheral) USU_AOBA_EXTENSION_PSEL(3, 2, peripheral)
+#define USU_AOBA_EXTENSION_3_PSEL_PIN3(peripheral) USU_AOBA_EXTENSION_PSEL(3, 3, peripheral)
+#define USU_AOBA_EXTENSION_3_PSEL_PIN4(peripheral) USU_AOBA_EXTENSION_PSEL(3, 4, peripheral)
+
 / {
     model = "usu-aoba";
 
@@ -43,6 +72,26 @@
 			, <17 0 &gpio1 15 0>
 			, <18 0 &gpio1 13 0>
 			;
+	};
+
+	usu_aoba_ext1: extension-connector-1 {
+		#gpio-cells = <2>;
+		gpio-map-mask = <0xffffffff 0xffffffc0>;
+		gpio-map-pass-thru = <0 0x3f>;
+	};
+
+	usu_aoba_ext2: extension-connector-2 {
+		#gpio-cells = <2>;
+		gpio-map-mask = <0xffffffff 0xffffffc0>;
+		gpio-map-pass-thru = <0 0x3f>;
+		status = "disabled";
+	};
+
+	usu_aoba_ext3: extension-connector-3 {
+		#gpio-cells = <2>;
+		gpio-map-mask = <0xffffffff 0xffffffc0>;
+		gpio-map-pass-thru = <0 0x3f>;
+		status = "disabled";
 	};
 };
 

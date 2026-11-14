@@ -1,3 +1,17 @@
+/* Extension connector 1, pins 1 through 4. */
+#define USU_AOBA_EXT1_PIN1_GPIO &gpio0
+#define USU_AOBA_EXT1_PIN1_PORT 0
+#define USU_AOBA_EXT1_PIN1_NUMBER 12
+#define USU_AOBA_EXT1_PIN2_GPIO &gpio1
+#define USU_AOBA_EXT1_PIN2_PORT 1
+#define USU_AOBA_EXT1_PIN2_NUMBER 9
+#define USU_AOBA_EXT1_PIN3_GPIO &gpio0
+#define USU_AOBA_EXT1_PIN3_PORT 0
+#define USU_AOBA_EXT1_PIN3_NUMBER 15
+#define USU_AOBA_EXT1_PIN4_GPIO &gpio0
+#define USU_AOBA_EXT1_PIN4_PORT 0
+#define USU_AOBA_EXT1_PIN4_NUMBER 13
+
 / {
 	chosen {
 		zmk,battery = &vbatt;
@@ -7,4 +21,12 @@
 		compatible = "zmk,non-lipo-battery";
 		io-channels = <&adc 2>;
 	};
+};
+
+&usu_aoba_ext1 {
+	status = "okay";
+	gpio-map = <1 0 USU_AOBA_EXT1_PIN1_GPIO USU_AOBA_EXT1_PIN1_NUMBER 0>,
+		<2 0 USU_AOBA_EXT1_PIN2_GPIO USU_AOBA_EXT1_PIN2_NUMBER 0>,
+		<3 0 USU_AOBA_EXT1_PIN3_GPIO USU_AOBA_EXT1_PIN3_NUMBER 0>,
+		<4 0 USU_AOBA_EXT1_PIN4_GPIO USU_AOBA_EXT1_PIN4_NUMBER 0>;
 };
